@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  backend:
+    container_name: 'kpd-backend'
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    env_file: .env
+    restart: always 
+    ports:
+      - '4000:3000'
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: 'kpd-database'
+    image: postgres:12.12-alpine
+    restart: always
+    env_file: .env
+
+  frontend:
+    container_name: 'kpd-frontend'
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    ports:
+      - '8180:80'
