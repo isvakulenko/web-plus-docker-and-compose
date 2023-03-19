@@ -25,4 +25,4 @@ services:
       context: frontend
       dockerfile: Dockerfile
     ports:
-      - '8180:80'
+      - '8081:80'
