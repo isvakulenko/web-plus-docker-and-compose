@@ -21,7 +21,7 @@ WORKDIR /app
 # Заменяем дефолтную страницу nginx соответствующей веб-приложению
 COPY --from=builder /app/build /usr/share/nginx/html
 COPY nginx/conf.d/default.conf /etc/nginx/conf.d
-EXPOSE 8180
+EXPOSE 8081
 #https://proglib.io/p/kak-zapustit-nginx-v-docker-2020-05-12
 #В последней строке указывается точка входа образа для команды: 
 CMD ["nginx", "-g", "daemon off;"]
