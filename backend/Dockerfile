@@ -8,7 +8,7 @@ WORKDIR /app
 # тот же символ делает копирование опциональным, т. е. без файла сборка не упадёт
 COPY package*.json ./
 # Устанавливаем зависимости
-RUN npm i --legacy-peer-deps
+RUN npm ci
 # Копируем исходный код и собираем приложение
 COPY . .
 RUN npm run build
@@ -24,7 +24,7 @@ WORKDIR /app
 COPY --from=builder /app/package*.json ./
 # Флаг --omit=dev означает - "не ставить devDependencies"
 # они не нужны нам в продакшен-окружении
-RUN npm i --legacy-peer-deps --omit=dev && npm i -g pm2
+RUN npm ci --omit=dev && npm i -g pm2
 # Копируем директорию со сборкой приложения
 COPY --from=builder /app/dist ./dist/
 COPY ./ecosystem.config.js .
