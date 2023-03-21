@@ -8,14 +8,14 @@ WORKDIR /app
 # тот же символ делает копирование опциональным, т. е. без файла сборка не упадёт
 COPY package*.json ./
 # Устанавливаем зависимости
-RUN npm ci
+RUN npm i --legacy-peer-deps
 # Копируем исходный код и собираем приложение
 COPY . .
 RUN npm run build
 # после сборки приложения внутри контейнера нам больше не нужен исходный код
 RUN rm -rf ./src 
 
-FROM nginx:latest-alpine AS frontend
+FROM nginx:latest AS frontend
 # указываем рабочую директорию и сохраняем новый слой
 WORKDIR /app
 # Заменяем дефолтную страницу nginx соответствующей веб-приложению
