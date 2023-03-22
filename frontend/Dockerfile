@@ -8,7 +8,7 @@ WORKDIR /app
 # тот же символ делает копирование опциональным, т. е. без файла сборка не упадёт
 COPY package*.json ./
 # Устанавливаем зависимости
-RUN npm i --legacy-peer-deps
+RUN npm ci
 # Копируем исходный код и собираем приложение
 COPY . .
 RUN npm run build
